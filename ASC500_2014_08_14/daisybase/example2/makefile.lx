@@ -1,0 +1,15 @@
+#*******************************************************************************
+#*
+#*  Project:        Daisy Client Library
+#*
+#*  Filename:       makefile.lx
+#*
+#*  Purpose:        gcc makefile for daisybase example 2
+#*
+#*  Author:         NHands GmbH & Co KG
+#*
+#********************************************************************************
+# $Id: makefile.lx,v 1.1 2010/11/22 16:37:29 trurl Exp $
+
+example2: cmdline.c makefile.lx ../include/daisybase.h ../include/metadata.h
+	  gcc -o cmdline -g -Wall -I../include -L../lib -ldaisybase cmdline.c

@@ -8,7 +8,7 @@ import re
 import time
 import numpy as np
 import enum
-from lib.asc500_base import ASC500Base
+from hardware.spm.spm_library.ASC500_Python_Control.lib.asc500_base import ASC500Base
 
 
 class ScannerState(enum.Enum):
@@ -254,7 +254,7 @@ class ASC500Scanner(ASC500Base):
             self.setParameter(self.getConst('ID_OUTPUT_ACTIVATE'), 1)
             while(outActive == 0):
                 outActive = self.getParameter(self.getConst('ID_OUTPUT_STATUS'), 0 )
-                print( "Output Status: ", outActive )
+                # print( "Output Status: ", outActive )
                 time.sleep( .01 )
 
     def getPositionsXYRel(self):
@@ -409,7 +409,7 @@ class ASC500Scanner(ASC500Base):
             activeChecker = 0
             while ( activeChecker == 0 ):
                 activeChecker = self.getParameter( self.getConst('ID_OUTPUT_STATUS'), 0 )
-                print( "Output Status: ", activeChecker )
+                # print( "Output Status: ", activeChecker )
                 time.sleep( .05 )
                 
         if (command == self.getConst('SCANRUN_ON')):
@@ -498,7 +498,7 @@ class ASC500Scanner(ASC500Base):
         self.setParameter(self.getConst('ID_SPEC_PATHCTRL'), 2)  # start Path mode with two coordinates (start, target)
         time.sleep(0.05)
     
-    def setRelativeOrigin(self, position):
+    def setRelativeOrigin(self, pos):
         """
         This sets the scanner origin relative to the voltage origin.
         
@@ -568,7 +568,7 @@ class ASC500Scanner(ASC500Base):
         # Wait for full buffer on channel 0 and show progress
         while ( event == 0 ):
             event = self.waitForEvent(5, self.getConst('DYB_EVT_DATA_00'), 0 ) # TODO: Keep eye on this when changing channel
-            pos = self.getScannerXYZRelPos()
+            pos = self.getPositionsXYZRel()
             print( "Scanner at ", pos[0], " , ", pos[1], " nm" )
     
         # Read and print data frame, forward and backward scan in separate files

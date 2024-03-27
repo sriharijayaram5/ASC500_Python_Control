@@ -1,0 +1,19 @@
+#*******************************************************************************
+#*
+#*  Project:        Daisy Client Library
+#*
+#*  Filename:       makefile.win
+#*
+#*  Purpose:        MSVC makefile for daisybase example 2
+#*
+#*  Author:         NHands GmbH & Co KG
+#*
+#********************************************************************************
+# $Id: makefile.win,v 1.1 2007/08/07 00:40:30 trurl Exp $
+
+cmdline.exe : cmdline.obj makefile.win ..\lib\daisybase.lib
+	link /NOLOGO /DEBUG /SUBSYSTEM:CONSOLE /OUT:cmdline.exe cmdline.obj ..\lib\daisybase.lib
+
+cmdline.obj : cmdline.c makefile.win ..\include\daisybase.h ..\include\metadata.h
+	cl -nologo -c -W3 -MDd -Zi -I..\include -o cmdline.obj cmdline.c 
+

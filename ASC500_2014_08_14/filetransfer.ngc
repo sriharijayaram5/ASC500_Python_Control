@@ -1,0 +1,9 @@
+<Panel Caption="File Transfer" Icon="debug.xpm">
+
+  <Widget Type="FileTransfer" Caption="File Transfer" Address="0x10D3" X="0" Y="0" >
+		<Connect Name="Start"     Address="0x10E0" Index="-1" />
+		<Connect Name="Transfer"  Address="0x10E1" Index="-1" />
+		<Connect Name="Finish"    Address="0x10E2" Index="-1" />
+  </Widget>
+
+</Panel>

@@ -1,7 +1,7 @@
 
 import ctypes as ct
 import os
-import lib.asc500_const as asc500_const
+import hardware.spm.spm_library.ASC500_Python_Control.lib.asc500_const as asc500_const
 import time
 import numpy as np
 
@@ -290,6 +290,7 @@ class ASC500Base():
         self._convValue2Phys.restype = ct.c_float
         self._convPhys2Print = API.DYB_convPhys2Print
         self._convPhys2Print.restype = ct.c_float
+        self.API = API
 
     #%% Callback definitions
 
@@ -700,10 +701,10 @@ class ASC500Base():
         size : int
             Buffer size in '32 bit items'.
         """
-        if size < 128:
-            print('If size is too small (< 128), \
-                  timer triggered data will not be buffered \
-                      to avoid too many buffer-full events.')
+        # if size < 128:
+            # print('If size is too small (< 128), \
+            #       timer triggered data will not be buffered \
+            #           to avoid too many buffer-full events.')
         self._configureDataBuffering(chn,
                                      size)
 

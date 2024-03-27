@@ -1,4 +1,4 @@
-from lib.asc500_base import ASC500Base
+from hardware.spm.spm_library.ASC500_Python_Control.lib.asc500_base import ASC500Base
 
 class ASC500AFM(ASC500Base):
     """ These funciotns control the AFM measurement method and related features."""

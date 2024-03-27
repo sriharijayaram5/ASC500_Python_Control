@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- $Id: debug.ngc,v 1.8 2012/02/14 21:22:46 trurl Exp $ -->
+<Panel Name="Debugging" Icon="debug.xpm">
+  <Widget Type="Box" Style="Flat"                              X="0" Y="0" >
+    <Widget Type="Led"    Caption="Data Lost"                  X="0" Y="0" Address="0x110" Grey="0" Red="1" Green="-1" />
+    <Widget Type="Button" Caption="Reset"                      X="1" Y="0" Address="0x110" Data="0" />
+    <Widget Type="Box"    Style="Flat"                         X="2" Y="0"  />
+  </Widget>
+  <Widget Type="Xedit"    Caption="Server Slowdown"            X="0" Y="1" Address="0x09" Prefix="X" />
+  <Widget Type="Check"  Caption="Allow dyn. Scan Speed"        X="0" Y="2" Address="0x103D" />
+
+  <Widget Type="Button" Caption="Reboot RBox"                  X="1" Y="0" Address="0x180" />
+  <Dialog               Caption="Controller Logging"           X="1" Y="1" Modal="0" >
+    <Widget Type="Bitfield"  Caption="" Bits="Server:Serial"   X="0" Y="0" Horizontal="1" Address="1" Index="6" />
+    <Widget Type="Box" Caption="" X="0" Y="1" Style="Flat" >
+      <Widget Type="Edit"   Caption="Info Source"                  X="0" Y="1" Address="0x1" Index="0" />
+      <Widget Type="Edit"   Caption="Info Level"                   X="0" Y="2" Address="0x1" Index="1" />
+      <Widget Type="Edit"   Caption="Warning Source"               X="1" Y="1" Address="0x1" Index="2" />
+      <Widget Type="Edit"   Caption="Info Level"                   X="1" Y="2" Address="0x1" Index="3" />
+      <Widget Type="Edit"   Caption="Error Source"                 X="2" Y="1" Address="0x1" Index="4" />
+      <Widget Type="Edit"   Caption="Error Level"                  X="2" Y="2" Address="0x1" Index="5" />
+    </Widget>
+  </Dialog>
+  <Widget Type="Box"    Caption="FPGA1 Access" X="0" Y="3" >
+    <Widget Type="Edit"   Caption="Address [Hex]"  Display="Hex" X="0" Y="0" Address="3" Index="0" />
+    <Widget Type="Edit"   Caption="Value [Hex]"    Display="Hex" X="0" Y="1" Address="3" Index="1" />
+    <Widget Type="Edit"   Caption="Command [Hex]"  Display="Hex" X="1" Y="1" Address="3" Index="2" />
+    <Widget Type="Box"    Caption=""        X="0" Y="2" Style="Flat" >
+      <Widget Type="Button" Caption="Set"                          X="0" Y="0" Address="3" Index="4" />
+      <Widget Type="Button" Caption="Get"                          X="1" Y="0" Address="3" Index="5" />
+    </Widget>
+    <Widget Type="Button" Caption="Commit"                       X="1" Y="2" Address="3" Index="3" />
+  </Widget>
+  <Widget Type="Box" Caption="FPGA2 Access"                      X="1" Y="3" >
+    <Widget Type="Edit"   Caption="Address [Hex]"  Display="Hex" X="0" Y="0" Address="7" Index="0" />
+    <Widget Type="Edit"   Caption="Value [Hex]"    Display="Hex" X="0" Y="1" Address="7" Index="1" />
+    <Widget Type="Edit"   Caption="Command [Hex]"  Display="Hex" X="1" Y="1" Address="8" Index="0" />
+    <Widget Type="Button" Caption="Set"                          X="0" Y="2" Address="7" Index="2" />
+    <Widget Type="Button" Caption="Commit"                       X="1" Y="2" Address="8" Index="1" />
+  </Widget>
+  <Widget Type="Box" Caption="CPLD Access"                       X="0" Y="4" >
+    <Widget Type="Edit"   Caption="Mux No"                       X="0" Y="0" Address="4" Index="0" />
+    <Widget Type="Edit"   Caption="Status [Hex]"   Display="Hex" X="0" Y="1" Address="4" Index="1" />
+    <Widget Type="Button" Caption="Commit"                       X="0" Y="2" Address="4" Index="2" />
+  </Widget>
+  <Widget Type="Box" Caption="CPLD DA Access"                    X="1" Y="4" >
+    <Widget Type="Edit"   Caption="DA No"                        X="0" Y="0" Address="5" Index="0" />
+    <Widget Type="Edit"   Caption="Value [Hex]"    Display="Hex" X="0" Y="1" Address="5" Index="1" />
+    <Widget Type="Button" Caption="Commit"                       X="0" Y="2" Address="5" Index="2" />
+  </Widget>
+  <Widget Type="Box" Caption="Generic Set Telegram"              X="0" Y="5" Width="2" >
+    <Widget Type="Edit"   Caption="Address [Hex]"  Display="Hex" X="0" Y="0" Address="0x102F" Index="0" />
+    <Widget Type="Edit"   Caption="Index"                        X="1" Y="0" Address="0x102F" Index="1" />
+    <Widget Type="Edit"   Caption="Value [Hex]"    Display="Hex" X="2" Y="0" Address="0x102F" Index="2" />
+    <Widget Type="Button" Caption="Commit"                       X="3" Y="0" Address="0x102F" Index="3" />
+  </Widget>
+  <Widget Type="Box" Caption=""                                  X="0" Y="6" Width="1" >
+	  <Widget Type="Script" Caption="FPGA Simul Commands"            X="0" Y="6" Width="1" >
+		<Connect Name="FpgaPT"       Address="3" Index="4" />
+		<Connect Name="FpgaPI"       Address="3" Index="5" />
+		<Connect Name="FpgaPN"       Address="3" Index="6" />
+		<Connect Name="FpgaValue"    Address="3" Index="7" />
+		<Connect Name="FpgaCommand"  Address="3" Index="8" />
+		<Connect Name="CommitVal"    Address="3" Index="10" />
+		<Connect Name="CommitCmd"    Address="3" Index="9" />
+		<Connect Name="CommitGet"    Address="3" Index="11" />
+	  </Widget>
+	  <Widget Type="Label" Caption="pget answer [Hex]" Display="Hex" Address="0x3" Index="1"  X="0" Y="7" Alignment="Left"/>
+  </Widget>
+  <Widget Type="Box" Caption="RBox AUX Connections"              X="1" Y="6" Width="1" >
+      <Widget Type="Combo" Caption="AUX A"                       X="0" Y="0" Address="0x1030" Index="0" Offset="-1" Choices="Off:AFM Amp In:AFM Amp Reg P:AFM Amp Reg I:AFM Amp Reg Setp:AFM Frq In:AFM Frq Reg P:AFM Frq Reg I:AFM Frq Reg Setp" />
+      <Widget Type="Combo" Caption="AUX B"                       X="0" Y="1" Address="0x1030" Index="1" Offset="-1" Choices="Off:AFM Amp In:AFM Amp Reg P:AFM Amp Reg I:AFM Amp Reg Setp:AFM Frq In:AFM Frq Reg P:AFM Frq Reg I:AFM Frq Reg Setp" />
+  </Widget>
+
+  <Widget Type="Box" Caption="Firmware Update"              X="0" Y="7"  >
+	  <Widget Type="FirmwareUpdate" Caption="Firmware Update"  Address="0x173" X="0" Y="5" Width="1" >
+		<Connect Name="FirmwareUpdateEnable"  Address="0x170" Index="0" />
+		<Connect Name="FirmwareDspUpdate"     Address="0x171" Index="0" />
+		<Connect Name="FirmwareFpgaUpdate"     Address="0x172" Index="0" />
+	  </Widget>
+  </Widget>
+  
+
+  
+  <Widget Type="Box" Caption="Action Delay"                X="1" Y="7"  >
+	<Widget Type="Edit"   Caption="Action No"              X="0" Y="0" Address="0x182" Index="0" />
+	<Widget Type="Label"  Caption="Action Delay [ns]"      X="0" Y="1" Address="0x183" Alignment="Left" Display="Float" Scale="0.05" Unit="ns" />
+  </Widget>
+  
+  
+  <Widget Type="Box" Caption="Debug Channel"                     X="2" Y="0" Width="2" Height="8">
+    <Widget Type="Box" Caption="Channel 7" X="0" Y="0">
+      <Widget Type="Combo" Caption="Connect" X="0" Y="0" Choices="disable=0:enable=12" Address="0x3B" Index="7" />
+      <Widget Type="Combo" Caption="Signal"  X="1" Y="0" Choices="disable=0:enable=19" Address="0x31" Index="7" />
+      <Widget Type="Edit"  Caption="Points"  X="2" Y="0" Min="1" Max="65535" Address="0x32" Index="7" />
+      <Widget Type="Edit"  Caption="Average" X="3" Y="0" Min="0" Max="65535" Address="0x33" Index="7" />
+    </Widget>
+	
+	  <Widget Type="Box" Caption="FPGA Filter"                 X="0" Y="1"  >
+		<Widget Type="Edit"   Caption="Type"     X="0" Y="0" Address="0x57" Index="0" DefVal="-1" />
+		<Widget Type="Edit"   Caption="PT"       X="1" Y="0" Address="0x57" Index="1" DefVal="-1" />
+		<Widget Type="Edit"   Caption="PI"       X="2" Y="0" Address="0x57" Index="2" DefVal="-1" />
+		<Widget Type="Edit"   Caption="PN"       X="3" Y="0" Address="0x57" Index="3" DefVal="-1" />
+		<Widget Type="Edit"   Caption="Data"     X="4" Y="0" Address="0x57" Index="4" DefVal="-1" />
+	  </Widget>
+  
+    <View Channel="7"     ChannelSelector="Hide" TriggerSnapshotButtons="Hide"  X="0" Y="3" >
+        <Plugin Type="ASCII Filter" />
+        <Plugin Type="ASCII Trace Display" />
+    </View>
+  </Widget>
+
+</Panel>

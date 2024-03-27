@@ -1,11 +1,13 @@
-from lib.asc500_afm import ASC500AFM
-from lib.asc500_autoapproach import ASC500AutoApproach
-from lib.asc500_base import ASC500Base
-from lib.asc500_coarsedevice import ASC500CoarseDevice
-from lib.asc500_limits import ASC500Limits
-from lib.asc500_scanner import ASC500Scanner
-from lib.asc500_zcontrol import ASC500ZControl
-from lib.asc500_zfeedback import ASC500ZFeedback
+import sys
+# sys.path.insert(0,"C:\\Software\\ASC500_Python_Control\\")
+from hardware.spm.spm_library.ASC500_Python_Control.lib.asc500_afm import ASC500AFM
+from hardware.spm.spm_library.ASC500_Python_Control.lib.asc500_autoapproach import ASC500AutoApproach
+from hardware.spm.spm_library.ASC500_Python_Control.lib.asc500_base import ASC500Base
+from hardware.spm.spm_library.ASC500_Python_Control.lib.asc500_coarsedevice import ASC500CoarseDevice
+from hardware.spm.spm_library.ASC500_Python_Control.lib.asc500_limits import ASC500Limits      
+from hardware.spm.spm_library.ASC500_Python_Control.lib.asc500_scanner import ASC500Scanner
+from hardware.spm.spm_library.ASC500_Python_Control.lib.asc500_zcontrol import ASC500ZControl
+from hardware.spm.spm_library.ASC500_Python_Control.lib.asc500_zfeedback import ASC500ZFeedback
 
 
 class Device():
